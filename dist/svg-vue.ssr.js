@@ -29,11 +29,11 @@ var script = {
         },
 
         svgViewBoxValues: function svgViewBoxValues() {
-            return /viewBox="([^"]+)"/.exec(this.svgString)[1];
+            return this.svgString ? (/viewBox="([^"]+)"/.exec(this.svgString) || '')[1] : null;
         },
 
         svgContent: function svgContent() {
-            return this.svgString.replace(/^<svg[^>]*>|<\/svg>$/g, '');
+            return this.svgString ? this.svgString.replace(/^<svg[^>]*>|<\/svg>$/g, '') : null;
         }
     },
 };function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
@@ -131,7 +131,7 @@ var __vue_staticRenderFns__ = [];
   /* scoped */
   var __vue_scope_id__ = undefined;
   /* module identifier */
-  var __vue_module_identifier__ = "data-v-12290cdf";
+  var __vue_module_identifier__ = "data-v-4743bf92";
   /* functional template */
   var __vue_is_functional_template__ = false;
   /* style inject */
@@ -149,37 +149,26 @@ var __vue_staticRenderFns__ = [];
     __vue_module_identifier__,
     undefined,
     undefined
-  );// Import vue component
-
-// install function executed by Vue.use()
-function install(Vue) {
-  if (install.installed) { return; }
-  install.installed = true;
-  Vue.component('SvgVue', component);
+  );function install(Vue) {
+    if (install.installed) { return; }
+    install.installed = true;
+    Vue.component('SvgVue', component);
 }
 
-// Create module definition for Vue.use()
 var plugin = {
-  install: install,
+    install: install,
 };
 
-// To auto-install when vue is found
-/* global window global */
 var GlobalVue = null;
+
 if (typeof window !== 'undefined') {
-  GlobalVue = window.Vue;
+    GlobalVue = window.Vue;
 } else if (typeof global !== 'undefined') {
-  GlobalVue = global.Vue;
+    GlobalVue = global.Vue;
 }
+
 if (GlobalVue) {
-  GlobalVue.use(plugin);
+    GlobalVue.use(plugin);
 }
 
-// Inject install function into component - allows component
-// to be registered via Vue.use() as well as Vue.component()
-component.install = install;
-
-// It's possible to expose named exports when writing components that can
-// also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
-// export const RollupDemoDirective = component;
-exports.default=component;
+component.install = install;exports.default=component;

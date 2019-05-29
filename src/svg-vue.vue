@@ -29,11 +29,11 @@ export default {
         },
 
         svgViewBoxValues() {
-            return /viewBox="([^"]+)"/.exec(this.svgString)[1];
+            return this.svgString ? (/viewBox="([^"]+)"/.exec(this.svgString) || '')[1] : null;
         },
 
         svgContent() {
-            return this.svgString.replace(/^<svg[^>]*>|<\/svg>$/g, '');
+            return this.svgString ? this.svgString.replace(/^<svg[^>]*>|<\/svg>$/g, '') : null;
         }
     },
 }
