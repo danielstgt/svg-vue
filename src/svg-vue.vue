@@ -13,12 +13,6 @@ export default {
         icon: String
     },
 
-    data() {
-        return {
-            svgString: require(`svg-files-path/${this.iconPath}`).default
-        }
-    },
-
     computed: {
         iconPath: {
             cache: false,
@@ -26,6 +20,10 @@ export default {
             get() {
                 return this.icon.replace(new RegExp('.'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'), 'g'), '/') + '.svg';
             }
+        },
+
+        svgString() {
+            return require(`svg-files-path/${this.iconPath}`).default;
         },
 
         svgViewBoxValues() {
