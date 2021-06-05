@@ -13,12 +13,6 @@ var script = {
         icon: String
     },
 
-    data: function data() {
-        return {
-            svgString: require(("svg-files-path/" + (this.iconPath))).default
-        }
-    },
-
     computed: {
         iconPath: {
             cache: false,
@@ -26,6 +20,10 @@ var script = {
             get: function get() {
                 return this.icon.replace(new RegExp('.'.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'), 'g'), '/') + '.svg';
             }
+        },
+
+        svgString: function svgString() {
+            return require(("svg-files-path/" + (this.iconPath))).default;
         },
 
         svgViewBoxValues: function svgViewBoxValues() {
@@ -131,7 +129,7 @@ var __vue_staticRenderFns__ = [];
   /* scoped */
   var __vue_scope_id__ = undefined;
   /* module identifier */
-  var __vue_module_identifier__ = "data-v-4743bf92";
+  var __vue_module_identifier__ = "data-v-07dd6f25";
   /* functional template */
   var __vue_is_functional_template__ = false;
   /* style inject */
