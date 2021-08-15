@@ -1,7 +1,6 @@
 <template>
     <svg
-        :viewBox="svgViewBoxValues"
-        xmlns="http://www.w3.org/2000/svg"
+        v-bind="svgAttributes"
         v-html="svgContent"
     >
     </svg>
@@ -26,13 +25,23 @@ export default {
             return require(`svg-files-path/${this.iconPath}`).default;
         },
 
-        svgViewBoxValues() {
-            return this.svgString ? (/viewBox="([^"]+)"/.exec(this.svgString) || '')[1] : null;
+        svgAttributes() {
+            if (! this.svgString) return {};
+
+            let wrapper = document.createElement('div');
+            wrapper.innerHTML = this.svgString;
+
+            let attributesList = wrapper.firstElementChild.attributes;
+            let attributes = {};
+
+            Object.keys(attributesList).map(i => attributes[attributesList[i].name] = attributesList[i].value);
+
+            return attributes;
         },
 
         svgContent() {
             return this.svgString ? this.svgString.replace(/^<svg[^>]*>|<\/svg>$/g, '') : null;
         }
-    },
+    }
 }
 </script>
