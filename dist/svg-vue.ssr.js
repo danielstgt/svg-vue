@@ -6,7 +6,6 @@
 //
 //
 //
-//
 
 var script = {
     props: {
@@ -26,14 +25,24 @@ var script = {
             return require(("svg-files-path/" + (this.iconPath))).default;
         },
 
-        svgViewBoxValues: function svgViewBoxValues() {
-            return this.svgString ? (/viewBox="([^"]+)"/.exec(this.svgString) || '')[1] : null;
+        svgAttributes: function svgAttributes() {
+            if (! this.svgString) { return {}; }
+
+            var wrapper = document.createElement('div');
+            wrapper.innerHTML = this.svgString;
+
+            var attributesList = wrapper.firstElementChild.attributes;
+            var attributes = {};
+
+            Object.keys(attributesList).map(function (i) { return attributes[attributesList[i].name] = attributesList[i].value; });
+
+            return attributes;
         },
 
         svgContent: function svgContent() {
             return this.svgString ? this.svgString.replace(/^<svg[^>]*>|<\/svg>$/g, '') : null;
         }
-    },
+    }
 };function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
 /* server only */
 , shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -121,7 +130,7 @@ var normalizeComponent_1 = normalizeComponent;/* script */
 var __vue_script__ = script;
 
 /* template */
-var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{attrs:{"viewBox":_vm.svgViewBoxValues,"xmlns":"http://www.w3.org/2000/svg"},domProps:{"innerHTML":_vm._s(_vm.svgContent)}},[])};
+var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',_vm._b({domProps:{"innerHTML":_vm._s(_vm.svgContent)}},'svg',_vm.svgAttributes,false),[])};
 var __vue_staticRenderFns__ = [];
 
   /* style */
@@ -129,7 +138,7 @@ var __vue_staticRenderFns__ = [];
   /* scoped */
   var __vue_scope_id__ = undefined;
   /* module identifier */
-  var __vue_module_identifier__ = "data-v-07dd6f25";
+  var __vue_module_identifier__ = "data-v-2b92b432";
   /* functional template */
   var __vue_is_functional_template__ = false;
   /* style inject */
