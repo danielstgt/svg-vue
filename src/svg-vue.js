@@ -19,7 +19,21 @@ export default {
         },
 
         svgString: function svgString() {
-            return require('svg-files-path/' + this.iconPath).default;
+            // A missing icon makes the dynamic webpack `require` throw a terse
+            // "Cannot find module" error that crashes the render. Catch it and log a
+            // clear, actionable message instead, then render nothing. This is
+            // intentionally non-fatal so a single mistyped icon name cannot break the
+            // whole app (see danielstgt/svg-vue#2).
+            try {
+                return require('svg-files-path/' + this.iconPath).default;
+            } catch (e) {
+                console.error(
+                    '[svg-vue] Icon "' + this.icon + '" could not be found (looked for "' + this.iconPath + '"). ' +
+                    'Make sure the file exists in your SVG path and note that the icon name must not include the ".svg" extension.'
+                );
+
+                return null;
+            }
         },
 
         svgAttributes: function svgAttributes() {
