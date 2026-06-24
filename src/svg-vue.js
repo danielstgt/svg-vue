@@ -1,10 +1,10 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});// Plain render-function component (no `.vue` SFC) so the build needs no Vue SFC
+// Plain render-function component (no `.vue` SFC) so the build needs no Vue SFC
 // compiler. This mirrors exactly what the previous template
 //   <svg v-bind="svgAttributes" v-html="svgContent"></svg>
 // compiled to: `v-bind="object"` routes `class`/`style` onto the vnode data and
 // every other key onto `attrs` (Vue's bindObjectProps), and `v-html` maps to
 // `domProps.innerHTML` (null coerced to '', like the `_s` toString helper).
-var component = {
+export default {
     props: {
         icon: String
     },
@@ -59,26 +59,4 @@ var component = {
 
         return h('svg', data);
     }
-};function install(Vue) {
-    if (install.installed) return;
-    install.installed = true;
-    Vue.component('SvgVue', component);
-}
-
-var plugin = {
-    install: install,
 };
-
-var GlobalVue = null;
-
-if (typeof window !== 'undefined') {
-    GlobalVue = window.Vue;
-} else if (typeof global !== 'undefined') {
-    GlobalVue = global.Vue;
-}
-
-if (GlobalVue) {
-    GlobalVue.use(plugin);
-}
-
-component.install = install;exports["default"]=component;

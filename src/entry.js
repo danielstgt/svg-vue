@@ -1,4 +1,4 @@
-import component from './svg-vue.vue';
+import component from './svg-vue.js';
 
 function install(Vue) {
     if (install.installed) return;
@@ -6,11 +6,11 @@ function install(Vue) {
     Vue.component('SvgVue', component);
 }
 
-const plugin = {
-    install,
+var plugin = {
+    install: install,
 };
 
-let GlobalVue = null;
+var GlobalVue = null;
 
 if (typeof window !== 'undefined') {
     GlobalVue = window.Vue;
