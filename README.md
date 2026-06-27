@@ -1,5 +1,6 @@
-This is the corresponding Vue component for the [Laravel Mix SVG Vue plugin](https://github.com/danielstgt/laravel-mix-svg-vue).
+# svg-vue
 
-[![](https://img.shields.io/npm/v/svg-vue.svg?color=blue)](https://www.npmjs.com/package/svg-vue)
-[![](https://img.shields.io/npm/l/svg-vue.svg?color=blueviolet)](https://www.npmjs.com/package/svg-vue)
-[![](https://img.shields.io/npm/dm/svg-vue.svg)](https://npmcharts.com/compare/svg-vue?minimal=true)
+> [!IMPORTANT]
+> This repository is archived. The `svg-vue` component now lives in the [Laravel Mix SVG Vue monorepo](https://github.com/danielstgt/laravel-mix-svg-vue). Please report issues and submit changes there.
+
+This is the corresponding Vue component for the [Laravel Mix SVG Vue plugin](https://github.com/danielstgt/laravel-mix-svg-vue).
